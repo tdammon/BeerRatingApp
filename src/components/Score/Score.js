@@ -33,65 +33,76 @@ class Score extends Component {
 
     state = {
         value : 0,
+        clicked: false,
     }
 
     setValue=(val) => {
+        if(!this.state.clicked){
         this.setState({
             ...this.state,
             value: val,
         });
         console.log(this.state.value)
     }
+    }
+
+    clickvalue=(val) => {
+        this.setState({
+            ...this.state,
+            clicked : true,
+            value: val,
+        })
+    }
 
     showStars = () => {
         switch (this.state.value) {
             case 0 :
                 return (<div>
-                <Star onMouseEnter={()=>this.setValue(1)}></Star>
-                <Star onMouseEnter={()=>this.setValue(2)}></Star>
-                <Star onMouseEnter={()=>this.setValue(3)}></Star>
-                <Star onMouseEnter={()=>this.setValue(4)}></Star>
-                <Star onMouseEnter={()=>this.setValue(5)}></Star>
+                <Star onMouseEnter={()=>this.setValue(1)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(1)}></Star>
+                <Star onMouseEnter={()=>this.setValue(2)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(2)}></Star>
+                <Star onMouseEnter={()=>this.setValue(3)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(3)}></Star>
+                <Star onMouseEnter={()=>this.setValue(4)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(4)}></Star>
+                <Star onMouseEnter={()=>this.setValue(5)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(5)}></Star>
                 </div>);
             case 1 :
                 return (<div>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(1)}></Star>
-                <Star onMouseEnter={()=>this.setValue(2)}></Star>
-                <Star onMouseEnter={()=>this.setValue(3)}></Star>
-                <Star onMouseEnter={()=>this.setValue(4)}></Star>
-                <Star onMouseEnter={()=>this.setValue(5)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseLeave={()=>this.setValue(0)} onMouseEnter={()=>this.setValue(1)} onClick={()=>this.clickvalue(1)}></Star>
+                <Star onMouseEnter={()=>this.setValue(2)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(2)}></Star>
+                <Star onMouseEnter={()=>this.setValue(3)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(3)}></Star>
+                <Star onMouseEnter={()=>this.setValue(4)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(4)}></Star>
+                <Star onMouseEnter={()=>this.setValue(5)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(5)}></Star>
                 </div>);
             case 2 :
                 return (<div>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(1)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(2)}></Star>
-                <Star onMouseEnter={()=>this.setValue(3)}></Star>
-                <Star onMouseEnter={()=>this.setValue(4)}></Star>
-                <Star onMouseEnter={()=>this.setValue(5)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(1)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(1)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(2)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(2)}></Star>
+                <Star onMouseEnter={()=>this.setValue(3)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(3)}></Star>
+                <Star onMouseEnter={()=>this.setValue(4)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(4)}></Star>
+                <Star onMouseEnter={()=>this.setValue(5)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(5)}></Star>
                 </div>);
             case 3 : 
                 return (<div>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(1)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(2)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(3)}></Star>
-                <Star onMouseEnter={()=>this.setValue(4)}></Star>
-                <Star onMouseEnter={()=>this.setValue(5)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(1)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(1)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(2)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(2)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(3)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(3)}></Star>
+                <Star onMouseEnter={()=>this.setValue(4)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(4)}></Star>
+                <Star onMouseEnter={()=>this.setValue(5)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(5)}></Star>
                 </div>);
             case 4 :
                 return (<div>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(1)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(2)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(3)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(4)}></Star>
-                <Star onMouseEnter={()=>this.setValue(5)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(1)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(1)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(2)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(2)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(3)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(3)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(4)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(4)}></Star>
+                <Star onMouseEnter={()=>this.setValue(5)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(5)}></Star>
                 </div>);
             case 5 :
                 return (<div>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(1)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(2)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(3)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(4)}></Star>
-                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(5)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(1)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(1)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(2)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(2)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(3)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(3)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(4)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(4)}></Star>
+                <Star className={this.props.classes.orangeStar} onMouseEnter={()=>this.setValue(5)} onMouseLeave={()=>this.setValue(0)} onClick={()=>this.clickvalue(5)}></Star>
                 </div>);
             default :
                 return ;                    
