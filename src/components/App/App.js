@@ -12,14 +12,25 @@ import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../HomePage/HomePage';
 import Score from '../Score/Score';
 import Nav from '../Nav/Nav';
+import './index.css';
+import {withStyles} from '@material-ui/core';
 
-
+const styles = theme => ({
+  
+  grid: {
+      
+      height: '100%',  
+  },
+  
+  
+})
 class App extends Component {
 
   render() {
+    const { classes } = this.props;
     return (
       <Router>
-        <div>
+        <div className={classes.grid}>
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -57,4 +68,8 @@ class App extends Component {
   )}
 }
 
-export default connect()(App);
+const mapStateToProps = state => ({
+  
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(App));

@@ -8,17 +8,19 @@ import Button from '@material-ui/core/Button'
 const styles = theme => ({
     root: {
         flexGrow: 1,
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
     },
     grid: {
         display: 'flex',
-        flexDirection: 'column',
     },
     container: {
         display: 'flex',
         justifyContent: 'center',
     },
     button: {  
-        padding: theme.spacing.unit * 1.5,
+        padding: theme.spacing.unit * 2.5,
         textAlign: 'center',
         display: 'flex',
         width: '75%',
@@ -35,15 +37,19 @@ render() {
     <div className={classes.root}>
         
         <Grid className={classes.grid} container spacing={32}>
+
             <Grid className={classes.container} item xs={12}>
                 <Button variant='raised' className={classes.button}>Rate a Beer</Button>
             </Grid>
+
             <Grid className={classes.container} item xs={12}>
                 <Button variant='raised' className={classes.button}>Rate a Bar</Button>
             </Grid>
+
             <Grid className={classes.container} item xs={12}>
                 <Button variant='raised' className={classes.button}>Bars Near Me</Button>
             </Grid>
+
         </Grid>
     </div>
     )
