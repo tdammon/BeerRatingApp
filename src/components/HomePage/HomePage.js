@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {withStyles} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -18,6 +19,12 @@ const styles = theme => ({
     container: {
         display: 'flex',
         justifyContent: 'center',
+    },
+    link: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        textDecoration: 'none',
     },
     button: {  
         padding: theme.spacing.unit * 2.5,
@@ -39,15 +46,15 @@ render() {
         <Grid className={classes.grid} container spacing={32}>
 
             <Grid className={classes.container} item xs={12}>
-                <Button variant='raised' className={classes.button}>Rate a Beer</Button>
+            <Link className={classes.link} to="/score"><Button variant='raised' className={classes.button}>Rate a Beer</Button></Link>
             </Grid>
 
             <Grid className={classes.container} item xs={12}>
-                <Button variant='raised' className={classes.button}>Rate a Bar</Button>
+            <Link className={classes.link} to="/score"><Button variant='raised' className={classes.button}>Rate a Bar</Button></Link>
             </Grid>
 
             <Grid className={classes.container} item xs={12}>
-                <Button variant='raised' className={classes.button}>Bars Near Me</Button>
+            <Link className={classes.link} to="/score"><Button variant='raised' className={classes.button}>Bars Near Me</Button></Link>
             </Grid>
 
         </Grid>
