@@ -46,15 +46,15 @@ render() {
         <Grid className={classes.grid} container spacing={32}>
 
             <Grid className={classes.container} item xs={12}>
-            <Link className={classes.link} to="/score"><Button variant='raised' className={classes.button}>Rate a Beer</Button></Link>
+            <Link className={classes.link} to="/beerrating"><Button variant='raised' className={classes.button}>Rate a Beer</Button></Link>
             </Grid>
 
             <Grid className={classes.container} item xs={12}>
-            <Link className={classes.link} to="/score"><Button variant='raised' className={classes.button}>Rate a Bar</Button></Link>
+            <Link className={classes.link} to="/barrating"><Button variant='raised' className={classes.button}>Rate a Bar</Button></Link>
             </Grid>
 
             <Grid className={classes.container} item xs={12}>
-            <Link className={classes.link} to="/score"><Button variant='raised' className={classes.button}>Bars Near Me</Button></Link>
+            <Link className={classes.link} to="/rating"><Button variant='raised' className={classes.button}>Bars Near Me</Button></Link>
             </Grid>
 
         </Grid>

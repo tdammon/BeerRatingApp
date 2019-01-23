@@ -10,7 +10,8 @@ import {connect} from 'react-redux';
 
 import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../HomePage/HomePage';
-import Rating from '../Rating/Rating';
+import BeerRating from '../BeerRating/BeerRating';
+import BarRating from '../BarRating/BarRating';
 import Nav from '../Nav/Nav';
 import './index.css';
 import {withStyles} from '@material-ui/core';
@@ -55,8 +56,15 @@ class App extends Component {
             they will see the info page instead. */}
             <Route
             exact
-            path="/rating"
-            component={Rating}
+            path="/beerrating"
+            component={BeerRating}
+            />
+            {/* This works the same as the other protected route, except that if the user is logged in,
+            they will see the info page instead. */}
+            <Route
+            exact
+            path="/barrating"
+            component={BarRating}
             />
             
             <Route render={() => <h1>404</h1>} />

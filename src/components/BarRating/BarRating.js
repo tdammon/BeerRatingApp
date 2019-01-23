@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withStyles, Dialog, Typography} from '@material-ui/core';
-import Star from '@material-ui/icons/Star';
-import StarBorder from '@material-ui/icons/StarBorder';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -18,10 +16,21 @@ const styles = theme => ({
         flexGrow: 1,
         height: '100%',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
+    },
+    addImage: {
+        display: 'flex',
+        backgroundColor: 'black',
+        color: 'white',
+        borderRadius: 90,
+        height: 100,
+        width: 100,
+        justifySelf: 'flex-end',
+        marginRight: '12.5%',
     },
     grid: {
         display: 'flex',
+        marginTop: '10%',
     },
     container: {
         display: 'flex',
@@ -39,9 +48,14 @@ const styles = theme => ({
         fontSize: 20,
         display: 'inline'
     },
+    notes: {
+        backgroundColor: 'white',
+        borderRadius: 10,
+        width: '100%',
+    },
 })
 
-class Rating extends Component {
+class BarRating extends Component {
 
     state = {
         open: true,
@@ -69,33 +83,64 @@ render() {
     <div className={classes.root}>
 
         <Grid className={classes.grid} container spacing={24}>
+            <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
+                <Button className={classes.addImage}>
+                    Add 
+                    <br></br>
+                    Image
+                </Button>
+            </Grid>
             <Grid className={classes.container} item xs={12}>
                 <Paper className={classes.box}>
 
-                    <Typography className={classes.text}>Aroma</Typography>
+                    <Typography className={classes.text}>Ambiance</Typography>
                     <Score />
                 </Paper>
             </Grid>
             <Grid className={classes.container} item xs={12}>
                 <Paper className={classes.box}>
 
-                    <Typography className={classes.text}>Color</Typography>
+                    <Typography className={classes.text}>Noise</Typography>
                     <Score />
                 </Paper>
             </Grid>
             <Grid className={classes.container} item xs={12}>
                 <Paper className={classes.box}>
 
-                    <Typography className={classes.text}>Flavor</Typography>
+                    <Typography className={classes.text}>Crowd</Typography>
                     <Score />
                 </Paper>
             </Grid>
             <Grid className={classes.container} item xs={12}>
                 <Paper className={classes.box}>
 
-                    <Typography className={classes.text}>Finish</Typography>
+                    <Typography className={classes.text}>Menu</Typography>
                     <Score />
                 </Paper>
+            </Grid>
+            <Grid className={classes.container} item xs={12}>
+                <Paper className={classes.box}>
+
+                    <Typography className={classes.text}>Entertainment</Typography>
+                    <Score />
+                </Paper>
+            </Grid>
+            <Grid className={classes.container} item xs={12}>
+                <Paper className={classes.box}>
+                    <TextField
+                        className={classes.notes}
+                        placeholder='Notes'
+                        multiline
+                        rows="4"
+                        label='Notes'
+                        variant="outlined"
+                    />
+                </Paper>
+            </Grid>
+            <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
+                <Button className={classes.addImage}>
+                    Submit
+                </Button>
             </Grid>
             
         </Grid>
@@ -108,7 +153,7 @@ render() {
                 onClose={this.handleClose}
                 >
 
-                <DialogTitle>Find Your Beer</DialogTitle>
+                <DialogTitle>Select Your Bar</DialogTitle>
 
                 <DialogContent>
                     <TextField 
@@ -138,4 +183,4 @@ render() {
 const mapStateToProps = state => ({
   });
 
-export default connect(mapStateToProps)(withStyles(styles)(Rating));
+export default connect(mapStateToProps)(withStyles(styles)(BarRating));
