@@ -10,7 +10,7 @@ import {connect} from 'react-redux';
 
 import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../HomePage/HomePage';
-import Score from '../Score/Score';
+import Rating from '../Rating/Rating';
 import Nav from '../Nav/Nav';
 import './index.css';
 import {withStyles} from '@material-ui/core';
@@ -55,8 +55,8 @@ class App extends Component {
             they will see the info page instead. */}
             <Route
             exact
-            path="/score"
-            component={Score}
+            path="/rating"
+            component={Rating}
             />
             
             <Route render={() => <h1>404</h1>} />

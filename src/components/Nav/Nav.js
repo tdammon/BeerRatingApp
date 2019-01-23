@@ -32,8 +32,8 @@ class Nav extends Component {
             <AppBar position="static" className={classes.bar}>
                 <Toolbar>
                 <Link className={classes.nav} to="/home">Home</Link>
-                <Link className={classes.nav} to="/score">Beer</Link>
-                <Link className={classes.nav} to="/score">Score</Link>
+                <Link className={classes.nav} to="/rating">Beer</Link>
+                <Link className={classes.nav} to="/rating">Score</Link>
                 
                 </Toolbar>
             </AppBar>

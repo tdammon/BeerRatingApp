@@ -15,35 +15,17 @@ const styles = theme => ({
         height: '100%',
         display: 'flex',
     },
-    grid: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    box: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#dbd5d5',
-        borderRadius: 10,
-        width: '75%',
-        padding: 20,
-      },
-    text:{
-        fontSize: 20,
-        display: 'inline'
-    },
     starbox: {
         display: 'inline',
     },
-      star: {
+    star: {
           '&:hover': {
             color: 'orange'
           }
-      },
-      orangeStar: {
+    },
+    orangeStar: {
           color: 'orange'
-      },
+    },
 })
 
 class Score extends Component {
@@ -51,7 +33,6 @@ class Score extends Component {
     state = {
         value : 0,
         clicked: false,
-        open: true,
     }
 
     setValue=(val) => {
@@ -127,64 +108,14 @@ class Score extends Component {
         }
     };
 
-    handleClose = () => {
-        this.setState({
-          ...this.state,
-          open: false,
-        })
-      }
-
-    beerSearch =() => event => {
-        this.setState({
-            ...this.state,
-            beerName: event.target.value
-        })
-    }  
-
 render() {
     const {classes} = this.props
     return(
         
     <div className={classes.container}>
 
-        <Grid className={classes.grid} container spacing={32}>
-            <div className={classes.box}>
-            <Typography className={classes.text}>Aroma</Typography>
-                {this.showStars()}
-            </div>
-        </Grid>
+      {this.showStars()}  
 
-        <div>
-            <Dialog
-                disableBackdropClick
-                disableEscapeKeyDown
-                open={this.state.open}
-                onClose={this.handleClose}
-                >
-
-                <DialogTitle>Find Your Beer</DialogTitle>
-
-                <DialogContent>
-                    <TextField 
-                        variant="outlined"
-                        placeholder="Search Here"
-                        // label="Label"
-                        onChange={this.beerSearch()}
-                    />
-                </DialogContent>
-                    
-                <DialogActions>
-                <Button onClick={()=>this.handleClose()}>
-                  Cancel
-                </Button>
-                <Button onClick={()=>this.handleClose()}>
-                  Confirm
-                </Button>
-              </DialogActions>
-
-            </Dialog>
-        </div>
-        
     </div>
     )
 }
