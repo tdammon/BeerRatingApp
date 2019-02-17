@@ -59,6 +59,8 @@ class BeerRating extends Component {
 
     state = {
         open: true,
+        notes: null,
+        beerName: null,
     }
 
 
@@ -75,6 +77,19 @@ class BeerRating extends Component {
             beerName: event.target.value
         })
     }  
+
+    updateNotes = (event) => {
+        this.setState({
+            ...this.state,
+            notes: event.target.value,
+        })
+    }
+
+    //Need to add id after user authentication page is created
+    submitScore = () => {
+        console.log(this.props.scores)
+        this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, name: this.state.beerName, notes: this.state.notes}})
+    }
 
 render() {
     const {classes} = this.props
@@ -94,28 +109,28 @@ render() {
                 <Paper className={classes.box}>
 
                     <Typography className={classes.text}>Aroma</Typography>
-                    <Score />
+                    <Score name={'Aroma'}/>
                 </Paper>
             </Grid>
             <Grid className={classes.container} item xs={12}>
                 <Paper className={classes.box}>
 
                     <Typography className={classes.text}>Color</Typography>
-                    <Score />
+                    <Score name={'Color'}/>
                 </Paper>
             </Grid>
             <Grid className={classes.container} item xs={12}>
                 <Paper className={classes.box}>
 
                     <Typography className={classes.text}>Flavor</Typography>
-                    <Score />
+                    <Score name={'Flavor'}/>
                 </Paper>
             </Grid>
             <Grid className={classes.container} item xs={12}>
                 <Paper className={classes.box}>
 
                     <Typography className={classes.text}>Finish</Typography>
-                    <Score />
+                    <Score name={'Finish'}/>
                 </Paper>
             </Grid>
             <Grid className={classes.container} item xs={12}>
@@ -123,6 +138,7 @@ render() {
                     <TextField
                         className={classes.notes}
                         placeholder='Notes'
+                        onChange={this.updateNotes}
                         multiline
                         rows="4"
                         label='Notes'
@@ -131,7 +147,7 @@ render() {
                 </Paper>
             </Grid>
             <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
-                <Button className={classes.addImage}>
+                <Button className={classes.addImage} onClick={this.submitScore}>
                     Submit
                 </Button>
             </Grid>
@@ -168,12 +184,13 @@ render() {
 
             </Dialog>
         </div>
-        
+        {JSON.stringify(this.state.scores)}
     </div>
     )
 }
 };
 const mapStateToProps = state => ({
+    scores: state.ScoreReducer,
   });
 
 export default connect(mapStateToProps)(withStyles(styles)(BeerRating));

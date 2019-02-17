@@ -11,6 +11,8 @@ const styles = theme => ({
     },
     bar: {
         backgroundColor: 'blue',
+        // marginTop: '10%',
+        // height: '10%',
     },
     nav: {
         float: 'left',
@@ -28,7 +30,7 @@ class Nav extends Component {
         const { classes } = this.props;
         return(      
         <div className={classes.root}>
-            <AppBar position="static" className={classes.bar}>
+            <AppBar position="fixed" className={classes.bar}>
                 <Toolbar>
                 <Link className={classes.nav} to="/home">Home</Link>
                 <Link className={classes.nav} to="/rating">Beer</Link>

@@ -13,6 +13,7 @@ import HomePage from '../HomePage/HomePage';
 import BeerRating from '../BeerRating/BeerRating';
 import BarRating from '../BarRating/BarRating';
 import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 import './index.css';
 import {withStyles} from '@material-ui/core';
 
@@ -32,7 +33,7 @@ class App extends Component {
     return (
       <Router>
         <div className={classes.grid}>
-          <Nav />
+          {/* <Nav /> */}
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -69,7 +70,8 @@ class App extends Component {
             
             <Route render={() => <h1>404</h1>} />
           </Switch>
-          
+          <Footer />
+
           
         </div>
       </Router>

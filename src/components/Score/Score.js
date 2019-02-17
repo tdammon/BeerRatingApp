@@ -26,6 +26,7 @@ class Score extends Component {
     state = {
         value : 0,
         clicked: false,
+        name: this.props.name,
     }
 
     setValue=(val) => {
@@ -33,8 +34,8 @@ class Score extends Component {
         this.setState({
             ...this.state,
             value: val,
-        });
-        console.log(this.state.value)
+        });   
+        this.dispatchScore(val);
     }
     }
 
@@ -44,6 +45,11 @@ class Score extends Component {
             clicked : true,
             value: val,
         })
+        this.dispatchScore(val);
+    }
+
+    dispatchScore= (val)=> {
+        this.props.dispatch({type: 'UPDATE_SCORE', payload : {[this.props.name] : val}})
     }
 
     showStars = () => {
@@ -114,6 +120,7 @@ render() {
 }
 };
 const mapStateToProps = state => ({
+    scores: state.ScoreReducer,
   });
 
 export default connect(mapStateToProps)(withStyles(styles)(Score));
