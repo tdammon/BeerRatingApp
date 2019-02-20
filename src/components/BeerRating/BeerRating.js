@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {withStyles, Dialog, Typography} from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import {withStyles, Dialog, Typography, ListItem, List, ListItemIcon, ListItemText, Input, Collapse} from '@material-ui/core';
+import Search from '@material-ui/icons/Search';
+import AddCircle from '@material-ui/icons/AddCircle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -53,12 +56,18 @@ const styles = theme => ({
         borderRadius: 10,
         width: '100%',
     },
+    nav: {
+        color: 'black',
+        textDecoration: 'none',
+        fontSize: 20,
+    }
 })
 
 class BeerRating extends Component {
 
     state = {
         open: true,
+        openSearch: true,
         notes: null,
         beerName: null,
     }
@@ -76,6 +85,7 @@ class BeerRating extends Component {
             ...this.state,
             beerName: event.target.value
         })
+        this.props.dispatch({type: 'BEER_LOOKUP', payload: event.target.value})
     }  
 
     updateNotes = (event) => {
@@ -88,7 +98,15 @@ class BeerRating extends Component {
     //Need to add id after user authentication page is created
     submitScore = () => {
         console.log(this.props.scores)
-        this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, name: this.state.beerName, notes: this.state.notes}})
+        this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, user_id : this.props.user.id, name: this.state.beerName, notes: this.state.notes}})
+    }
+
+    selectName =(name) => {
+        this.setState({
+            ...this.state,
+            beerName: name,
+            openSearch: false,
+        })
     }
 
 render() {
@@ -165,20 +183,39 @@ render() {
                 <DialogTitle>Find Your Beer</DialogTitle>
 
                 <DialogContent>
-                    <TextField 
+                    {/* <TextField 
                         variant="outlined"
                         placeholder="Search Here"
                         // label="Label"
                         onChange={this.beerSearch()}
-                    />
+                    /> */}
+                    
+                    <List>
+                        <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                            <Search />
+                        </ListItemIcon>
+                        <Input onChange={this.beerSearch()} type="search" 
+                            placeholder="Search Your Beer" value={this.state.beerName}/>
+                        </ListItem>
+                        <Collapse in={this.state.openSearch} unmountOnExit>
+                        {this.props.beer.map( beer => (
+                            <ListItem button key={beer.name} onClick={() => this.selectName(beer.name)}>
+                                <ListItemIcon><AddCircle/></ListItemIcon>
+                                <ListItemText inset primary={beer.name}/>
+                            </ListItem>
+                        ))}
+                        </Collapse>
+                    </List>
+                    
                 </DialogContent>
                     
                 <DialogActions>
-                <Button onClick={()=>this.handleClose()}>
-                  Cancel
+                <Button>
+                    <Link className={classes.nav} to="/home">Cancel</Link>
                 </Button>
                 <Button onClick={()=>this.handleClose()}>
-                  Confirm
+                  <p className={classes.nav}>Confirm</p>
                 </Button>
               </DialogActions>
 
@@ -191,6 +228,8 @@ render() {
 };
 const mapStateToProps = state => ({
     scores: state.ScoreReducer,
+    user: state.userReducer,
+    beer: state.setBeerListReducer,
   });
 
 export default connect(mapStateToProps)(withStyles(styles)(BeerRating));

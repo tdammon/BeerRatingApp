@@ -12,6 +12,8 @@ import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../HomePage/HomePage';
 import BeerRating from '../BeerRating/BeerRating';
 import BarRating from '../BarRating/BarRating';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import './index.css';
@@ -27,6 +29,12 @@ const styles = theme => ({
   
 })
 class App extends Component {
+
+  componentDidMount () {
+    console.log('fetch user')
+    this.props.dispatch({type: 'FETCH_USER'})
+    
+  }
 
   render() {
     const { classes } = this.props;
@@ -48,7 +56,7 @@ class App extends Component {
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
-            <Route
+            <ProtectedRoute
               exact
               path="/home"
               component={HomePage}
