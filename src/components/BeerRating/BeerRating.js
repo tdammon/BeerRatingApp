@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import swal from 'sweetalert';
+
 
 import Score from '../Score/Score'
 
@@ -60,6 +62,9 @@ const styles = theme => ({
         color: 'black',
         textDecoration: 'none',
         fontSize: 20,
+    },
+    swal: {
+        backgroundColor: 'green',
     }
 })
 
@@ -99,6 +104,12 @@ class BeerRating extends Component {
     submitScore = () => {
         console.log(this.props.scores)
         this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, user_id : this.props.user.id, name: this.state.beerName, notes: this.state.notes}})
+        swal({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success",
+            // timer: 1000,
+          });
     }
 
     selectName =(name) => {
