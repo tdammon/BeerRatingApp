@@ -79,10 +79,20 @@ class BeerRating extends Component {
 
 
     handleClose = () => {
-        this.setState({
-          ...this.state,
-          open: false,
-        })
+        if(this.state.beerName == null || this.state.beerName.length < 1){
+            swal({
+                title: "Ooops!",
+                text: "Did you forget to select your beer?",
+                icon: "alert",
+                timer: 3000,
+              });
+        }
+        else {
+            this.setState({
+            ...this.state,
+            open: false,
+            })
+        }
       }
 
     beerSearch =() => event => {
@@ -108,7 +118,7 @@ class BeerRating extends Component {
             title: "Good job!",
             text: "You clicked the button!",
             icon: "success",
-            // timer: 1000,
+            timer: 1000,
           });
     }
 
@@ -193,14 +203,7 @@ render() {
 
                 <DialogTitle>Find Your Beer</DialogTitle>
 
-                <DialogContent>
-                    {/* <TextField 
-                        variant="outlined"
-                        placeholder="Search Here"
-                        // label="Label"
-                        onChange={this.beerSearch()}
-                    /> */}
-                    
+                <DialogContent>        
                     <List>
                         <ListItem button className={classes.nested}>
                         <ListItemIcon>
