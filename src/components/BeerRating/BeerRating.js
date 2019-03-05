@@ -65,6 +65,10 @@ const styles = theme => ({
     },
     swal: {
         backgroundColor: 'green',
+    },
+    link: {
+        width: '100%',
+        height: '100%',
     }
 })
 
@@ -186,9 +190,11 @@ render() {
                 </Paper>
             </Grid>
             <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
+            <Link  to="/ratings">
                 <Button className={classes.addImage} onClick={this.submitScore}>
                     Submit
                 </Button>
+                </Link>
             </Grid>
             
         </Grid>

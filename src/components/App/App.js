@@ -18,6 +18,7 @@ import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import './index.css';
 import {withStyles} from '@material-ui/core';
+import RecentlyRatedPage from '../RecentlyRatedPage/RecentlyRatedPage';
 
 const styles = theme => ({
   
@@ -75,6 +76,14 @@ class App extends Component {
             path="/barrating"
             component={BarRating}
             />
+            {/* This works the same as the other protected route, except that if the user is logged in,
+            they will see the info page instead. */}
+            <Route
+            exact
+            path="/ratings"
+            component={RecentlyRatedPage}
+            />
+
             
             <Route render={() => <h1>404</h1>} />
           </Switch>

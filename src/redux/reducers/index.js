@@ -4,6 +4,7 @@ import userReducer from './userReducer';
 import loginMode from './loginModeReducer';
 import errors from './errorsReducer';
 import setBeerListReducer from './setBeerListReducer';
+import setRatingsReducer from './RatingsReducer';
 
 const rootReducer = combineReducers({
     ScoreReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     loginMode,
     errors,
     setBeerListReducer,
+    setRatingsReducer
 });
 
 export default rootReducer;
