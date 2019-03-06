@@ -5,22 +5,35 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardHeader from '@material-ui/core/CardHeader';
+import IconButton from '@material-ui/core/IconButton';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
     card: {
-        border: 'black',
+        // display: 'flex',
+        // flexDirection: 'row',
     },
+    details: {
+        display: 'flex',
+        
+      },
     beerName: {
         display: 'flex',
         justifyContent: 'center',
-        margin: 0,
-        padding: 0,
+        width: '100%',
+    },
+    cardContent: {
+        flex: '1 0 auto',
     },
     inlinetypography: {
         // display: 'inline',
         float: 'left',
         paddingLeft: 10,
+    },
+    dropdown: {
+        display: 'flex',
+        justifyContent: 'center',
+        
     },
     img : {
         float: 'right',
@@ -48,13 +61,13 @@ render() {
         {this.props.ratings.map(rating => {
             return(
                 <Card className={classes.card}>
-                    <div>
-                        
+                    
                         <div className={classes.beerName}>
                             <Typography variant="headline">{rating.name}</Typography>
-                            </div>
-                        
-                        <CardContent>
+                        </div>
+
+                        <div className={classes.details}>
+                        <CardContent className={classes.cardContent}>
                             <div className={classes.inlinetypography}>
                             <Typography>Aroma:  </Typography>
                             <Typography>Color:</Typography>
@@ -67,14 +80,18 @@ render() {
                             <Typography>{rating.flavor}</Typography>
                             <Typography>{rating.finish}</Typography>
                             </div>
-                            <div >
-                            <CardMedia 
-                            className={classes.img}
-                            image="images/Frog.png"
-                            />
-                            </div>
+                            <IconButton className={classes.dropdown}>
+                                <ExpandMoreIcon />
+                            </IconButton>
+                            
                         </CardContent>
-                    </div>
+                        <CardMedia 
+                        className={classes.img}
+                        image="images/Frog.png"
+                        />
+                        </div>
+                        
+                        
                 </Card>
             )
         })}
