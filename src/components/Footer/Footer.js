@@ -35,7 +35,7 @@ class Footer extends Component {
                 >
                     <BottomNavigationAction component={Link} to="/home" label="Home" icon={<HomeIcon />} />
                     <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                    <BottomNavigationAction label="Account" icon={<AccountCircleIcon />} />
+                    <BottomNavigationAction component={Link} to="/account" label="Account" icon={<AccountCircleIcon />} />
                 </BottomNavigation>
 			</footer>
 		)

@@ -190,11 +190,9 @@ render() {
                 </Paper>
             </Grid>
             <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
-            <Link  to="/ratings">
-                <Button className={classes.addImage} onClick={this.submitScore}>
+                <Button component={Link} to="/ratings" className={classes.addImage} onClick={this.submitScore}>
                     Submit
                 </Button>
-                </Link>
             </Grid>
             
         </Grid>
@@ -231,8 +229,8 @@ render() {
                 </DialogContent>
                     
                 <DialogActions>
-                <Button>
-                    <Link className={classes.nav} to="/home">Cancel</Link>
+                <Button component={Link} to="/home">
+                  <p className={classes.nav}> Cancel</p> 
                 </Button>
                 <Button onClick={()=>this.handleClose()}>
                   <p className={classes.nav}>Confirm</p>

@@ -34,7 +34,7 @@ class Nav extends Component {
                 <Toolbar>
                 <Link className={classes.nav} to="/home">Home</Link>
                 <Link className={classes.nav} to="/rating">Beer</Link>
-                <Link className={classes.nav} to="/rating">Score</Link>
+                <Link className={classes.nav} to="/account">Score</Link>
                 
                 </Toolbar>
             </AppBar>
