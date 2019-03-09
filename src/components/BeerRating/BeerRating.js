@@ -69,6 +69,9 @@ const styles = theme => ({
     link: {
         width: '100%',
         height: '100%',
+    },
+    takePic: {
+        display: 'none',
     }
 })
 
@@ -134,6 +137,10 @@ class BeerRating extends Component {
         })
     }
 
+    addPic = () => {
+        document.getElementById('takePic').click()
+    }
+
 render() {
     const {classes} = this.props
     return(
@@ -142,10 +149,12 @@ render() {
 
         <Grid className={classes.grid} container spacing={24}>
             <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
-                <Button className={classes.addImage}>
+                <Button className={classes.addImage} onClick={this.addPic}>
+                    <input className={classes.takePic} ref={input => this.inputElement = input} id="takePic" type="file" accept="image/*"></input>
                     Add 
                     <br></br>
                     Image
+                    
                 </Button>
             </Grid>
             <Grid className={classes.container} item xs={12}>
