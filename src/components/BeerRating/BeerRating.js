@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {withStyles, Dialog, Typography, ListItem, List, ListItemIcon, ListItemText, Input, Collapse} from '@material-ui/core';
 import Search from '@material-ui/icons/Search';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import AddCircle from '@material-ui/icons/AddCircle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -11,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+
 import swal from 'sweetalert';
 
 
@@ -72,6 +75,11 @@ const styles = theme => ({
     },
     takePic: {
         display: 'none',
+    },
+    buttonDisplay: {
+        diplay: 'flex',
+        justifySelf: 'center',
+        justifyContent: 'center',
     }
 })
 
@@ -80,8 +88,10 @@ class BeerRating extends Component {
     state = {
         open: true,
         openSearch: true,
+        openModal: false,
         notes: null,
         beerName: null,
+        imgSrc: null,
     }
 
 
@@ -141,6 +151,38 @@ class BeerRating extends Component {
         document.getElementById('takePic').click()
     }
 
+    onChange = () => {
+        let newfile = this.refs.file.files[0];
+        let reader = new FileReader();
+        let url = reader.readAsDataURL(newfile);
+        reader.onloadend = () => {
+            this.setState({
+                ...this.state,
+                openModal: true,
+                imgSrc : [reader.result]
+            })
+            // console.log(newfile)
+            console.log(this.state)
+            
+        }
+    }
+
+    closeModal = () => {
+        this.setState({
+            ...this.state,
+            openModal: false,
+            imgSrc : null,
+        })
+    }
+
+    savePicture = () => {
+        this.setState({
+            ...this.state,
+            openModal: false,
+        })
+    }
+
+
 render() {
     const {classes} = this.props
     return(
@@ -150,7 +192,14 @@ render() {
         <Grid className={classes.grid} container spacing={24}>
             <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
                 <Button className={classes.addImage} onClick={this.addPic}>
-                    <input className={classes.takePic} ref={input => this.inputElement = input} id="takePic" type="file" accept="image/*"></input>
+                    <input 
+                    className={classes.takePic} 
+                    ref="file"
+                    id="takePic" 
+                    type="file" 
+                    accept="image/*"
+                    onChange={this.onChange}
+                    />
                     Add 
                     <br></br>
                     Image
@@ -247,6 +296,19 @@ render() {
               </DialogActions>
 
             </Dialog>
+
+            <Dialog open={this.state.openModal}>
+                <img src={this.state.imgSrc} />
+                <DialogActions className={classes.buttonDisplay}>
+                    <Button onClick={()=>this.closeModal()}>
+                        <HighlightOffIcon></HighlightOffIcon>
+                    </Button>
+                    <Button onClick={()=>this.savePicture()}>
+                        <ThumbUpIcon></ThumbUpIcon>
+                    </Button>
+                </DialogActions>
+            </Dialog>    
+
         </div>
         {JSON.stringify(this.state.scores)}
     </div>
