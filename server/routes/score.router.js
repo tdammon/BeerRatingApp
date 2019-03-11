@@ -26,6 +26,14 @@ router.post('/', (req, res) => {
     })
 });
 
+router.post('/picture', (req, res) => {
+    let picture = req.body.picture;
+    let userid = req.body.id;
+    console.log(picture, userid)
+    let sqlText = `INSERT INTO beerpictures (picture, userid) VALUES ($1, $2)`;
+    pool.query(sqlText, [picture, userid])
+})
+
 router.get('/', (req, res) => {
     let beer = '%'+req.query.name+'%'
     console.log(beer)
