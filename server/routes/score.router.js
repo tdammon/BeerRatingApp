@@ -13,13 +13,14 @@ router.post('/', (req, res) => {
     let color = beer.ratings.Color;
     let flavor = beer.ratings.Flavor;
     let finish = beer.ratings.Finish;
+    let picture = beer.ratings.picture;
     console.log(user)
-    console.log(notes, aroma, color, flavor, finish)
-    let sqlText = `INSERT INTO beerratings (name, aroma, color, flavor, finish, notes, userid) VALUES ($1, $2, $3, $4, $5, $6, $7)`
-    pool.query(sqlText,[name, aroma, color, flavor, finish, notes, user])
+    console.log(notes, aroma, color, flavor, finish, picture)
+    let sqlText = `INSERT INTO beerratings (name, aroma, color, flavor, finish, notes, userid, picture) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
+    pool.query(sqlText,[name, aroma, color, flavor, finish, notes, user, picture])
     .then( response => {
         res.send(response)
-        console.log(response)
+        // console.log(response)
     })
     .catch(err => {
         console.log('Error getting settings', err)

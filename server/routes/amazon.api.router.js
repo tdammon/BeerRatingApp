@@ -7,25 +7,19 @@ const aws = require('aws-sdk');
 
 const s3 = new aws.S3();
 
-const params = {
-    Bucket: 'xxx',
-    Key: file.name,
-    Expires: 60,
-    ContentType: file.type
-};
-
 aws.config.update({
-    accessKeyId: AWS_ACCESS_KEY,
-    secretAccessKey: AWS_SECRET_KEY,
+    accessKeyId: 'AKIAIQVX2V4Q3IXQGWZA',
+    secretAccessKey: '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',
+    region: 'us-east-2',
 });
 
 //POST request to Amazon API
 router.post('/picture', (req,res)=>{
     let params = {
         Bucket: 'beerphoto',
-        Key: req.body.picture,
+        Key: '',
         Expires: 60,
-        ContentType:
+        ContentType: '',
     }
     let picture = req.body.picture;
     let userid = req.body.id;

@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     pool.query(sqlText)
     .then(response => {
         res.send(response.rows)
-        console.log(response)
+        // console.log(response)
     })
     .catch(err => {
         console.log('Error getting all ratings', err)

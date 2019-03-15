@@ -7,7 +7,7 @@ function* submitScore(action) {
   try {
 
     yield call(axios.post, '/submitScore', action.payload);
-    yield call(axios.post, '/submitScore/picture', action.payload)
+    // yield call(axios.post, '/submitScore/picture', action.payload)
     yield put({type: 'ADD_BEER', payload: action.payload})
   } catch (error) {
     console.log('Error Submitting Score:', error);

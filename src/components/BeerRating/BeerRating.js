@@ -129,7 +129,7 @@ class BeerRating extends Component {
 
     //Need to add id after user authentication page is created
     submitScore = () => {
-        console.log(this.props.scores)
+        console.log(this.state)
         this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, user_id : this.props.user.id, name: this.state.beerName, picture: this.state.imgSrc, notes: this.state.notes}})
         swal({
             title: "Good job!",
