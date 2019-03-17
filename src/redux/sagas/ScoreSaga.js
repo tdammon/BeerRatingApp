@@ -7,7 +7,6 @@ function* submitScore(action) {
   try {
 
     yield call(axios.post, '/submitScore', action.payload);
-    // yield call(axios.post, '/submitScore/picture', action.payload)
     yield put({type: 'ADD_BEER', payload: action.payload})
   } catch (error) {
     console.log('Error Submitting Score:', error);
@@ -34,10 +33,20 @@ function* beerLookup(action) {
   }
 }
 
+// function* addPicture(action) {
+//   try {
+//     const response = yield call(axios.get, '/picture', {params: {filename: action.payload.filename, picture: action.payload.picture}})
+//     yield put({type: 'SET_CREDENTIALS', payload: response.data})
+//   } catch(error){
+//     console.log('Error Setting Credentials', error)
+//   }
+// }
+
 function* ScoreSaga() {
   yield takeLatest('SUBMIT_SCORE', submitScore);
   yield takeLatest('ADD_BEER', addBeer)
   yield takeLatest('BEER_LOOKUP', beerLookup)
+  // yield takeLatest('ADD_PICTURE', addPicture)
 }
 
 export default ScoreSaga;

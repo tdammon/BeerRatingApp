@@ -13,11 +13,10 @@ router.post('/', (req, res) => {
     let color = beer.ratings.Color;
     let flavor = beer.ratings.Flavor;
     let finish = beer.ratings.Finish;
-    let picture = beer.ratings.picture;
     console.log(user)
-    console.log(notes, aroma, color, flavor, finish, picture)
-    let sqlText = `INSERT INTO beerratings (name, aroma, color, flavor, finish, notes, userid, picture) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
-    pool.query(sqlText,[name, aroma, color, flavor, finish, notes, user, picture])
+    console.log(notes, aroma, color, flavor, finish)
+    let sqlText = `INSERT INTO beerratings (name, aroma, color, flavor, finish, notes, userid) VALUES ($1, $2, $3, $4, $5, $6, $7)`
+    pool.query(sqlText,[name, aroma, color, flavor, finish, notes, user])
     .then( response => {
         res.send(response)
         // console.log(response)
@@ -27,13 +26,6 @@ router.post('/', (req, res) => {
     })
 });
 
-router.post('/picture', (req, res) => {
-    let picture = req.body.picture;
-    let userid = req.body.id;
-    console.log(picture, userid)
-    let sqlText = `INSERT INTO beerpictures (picture, userid) VALUES ($1, $2)`;
-    pool.query(sqlText, [picture, userid])
-})
 
 router.get('/', (req, res) => {
     let beer = '%'+req.query.name+'%'

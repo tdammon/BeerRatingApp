@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {withStyles, Dialog, Typography, ListItem, List, ListItemIcon, ListItemText, Input, Collapse} from '@material-ui/core';
@@ -130,12 +131,31 @@ class BeerRating extends Component {
     //Need to add id after user authentication page is created
     submitScore = () => {
         console.log(this.state)
-        this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, user_id : this.props.user.id, name: this.state.beerName, picture: this.state.imgSrc, notes: this.state.notes}})
+        this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, user_id : this.props.user.id, name: this.state.beerName, picture: this.state.imgSrc, notes: this.state.notes, filename: `${this.props.user.id}_${Date.now()}`}})
+        // this.props.dispatch({type: 'ADD_PICTURE', payload: {picture: this.state.imgSrc, filename: `${this.props.user.id}_${Date.now()}`}})
+        axios.get('/picture', {params: {picture: this.state.imgSrc, filename: `${this.props.user.id}_${Date.now()}`}})
+        .then(response =>{
+            var signedUrl = response.data;
+            var options = {
+                headers: {
+                //   ACL: 'public-read',
+                  'ContentType': 'image/png',
+                }
+              };
+              console.log(...this.state.imgSrc)
+            return axios.put(signedUrl, ...this.state.imgSrc, options);
+        })
+        .then(function (result) {
+            console.log(result,'success');
+          })
+          .catch(function (err) {
+            console.log(err, 'fail');
+          });
         swal({
             title: "Good job!",
             text: "You clicked the button!",
             icon: "success",
-            timer: 1000,
+            timer: 2000,
           });
     }
 
@@ -316,6 +336,7 @@ render() {
 }
 };
 const mapStateToProps = state => ({
+    credentials: state.credentialsReducer,
     scores: state.ScoreReducer,
     user: state.userReducer,
     beer: state.setBeerListReducer,
