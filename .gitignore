@@ -65,5 +65,7 @@ typings/
 .env.production.local
 .env
 
+.env
+
 # ignore package-lock as it complicates merging
 package-lock.json
