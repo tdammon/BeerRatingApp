@@ -12,10 +12,10 @@ const s3 = new aws.S3({
 
 router.get('/', (req,res)=>{
     let params = {
-        Bucket: 'beerphoto',
+        Bucket: 'beerphotos',
         Key: req.query.filename,
-        // Body : pic,
-        // ACL: 'public-read',
+        //Body : req.query.picture[0],
+        ACL: 'public-read',
         ContentType: 'image/png',
         Expires: 60,
     }

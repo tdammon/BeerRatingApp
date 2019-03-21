@@ -93,6 +93,7 @@ class BeerRating extends Component {
         notes: null,
         beerName: null,
         imgSrc: null,
+        imageType: null,
     }
 
 
@@ -136,14 +137,13 @@ class BeerRating extends Component {
         axios.get('/picture', {params: {picture: this.state.imgSrc, filename: `${this.props.user.id}_${Date.now()}`}})
         .then(response =>{
             var signedUrl = response.data;
-            var options = {
-                headers: {
-                //   ACL: 'public-read',
-                  'ContentType': 'image/png',
-                }
-              };
-              console.log(...this.state.imgSrc)
-            return axios.put(signedUrl, ...this.state.imgSrc, options);
+            var headers= {
+                   'ACL': 'public-read',
+                  'Content-Type': this.state.imageType,
+                };
+              
+            //   console.log(...this.state.imgSrc)
+            return axios.put(signedUrl, this.state.imgSrc[0]);
         })
         .then(function (result) {
             console.log(result,'success');
@@ -179,9 +179,10 @@ class BeerRating extends Component {
             this.setState({
                 ...this.state,
                 openModal: true,
-                imgSrc : [reader.result]
+                imgSrc : [reader.result],
+                imageType: newfile.type,
             })
-            // console.log(newfile)
+            console.log(newfile)
             console.log(this.state)
             
         }
