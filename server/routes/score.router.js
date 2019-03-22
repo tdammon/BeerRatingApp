@@ -6,6 +6,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 //GET settings from database filter by id
 router.post('/', (req, res) => {
     let beer = req.body
+    console.log(beer)
     let name = beer.name
     let notes = beer.notes;
     let user = beer.user_id
@@ -13,10 +14,11 @@ router.post('/', (req, res) => {
     let color = beer.ratings.Color;
     let flavor = beer.ratings.Flavor;
     let finish = beer.ratings.Finish;
+    let url = `https://s3.us-east-2.amazonaws.com/beerphotos/${beer.url}`
     console.log(user)
-    console.log(notes, aroma, color, flavor, finish)
-    let sqlText = `INSERT INTO beerratings (name, aroma, color, flavor, finish, notes, userid) VALUES ($1, $2, $3, $4, $5, $6, $7)`
-    pool.query(sqlText,[name, aroma, color, flavor, finish, notes, user])
+    console.log(url)
+    let sqlText = `INSERT INTO beerratings (name, aroma, color, flavor, finish, notes, userid, url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
+    pool.query(sqlText,[name, aroma, color, flavor, finish, notes, user, url])
     .then( response => {
         res.send(response)
         // console.log(response)

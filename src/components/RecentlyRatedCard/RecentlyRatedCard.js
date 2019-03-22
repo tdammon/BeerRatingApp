@@ -88,7 +88,7 @@ render() {
                         </CardContent>
                         <CardMedia 
                         className={classes.img}
-                        image="images/Frog.png"
+                        image={this.props.url}
                         />
                         </div>
                         <IconButton 

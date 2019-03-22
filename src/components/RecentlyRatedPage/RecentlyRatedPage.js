@@ -36,6 +36,7 @@ render() {
                     finish={rating.finish}
                     notes={rating.notes}
                     name={rating.name}
+                    url={rating.url}
                     />
             )
         })}

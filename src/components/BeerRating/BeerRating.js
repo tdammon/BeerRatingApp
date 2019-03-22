@@ -132,9 +132,9 @@ class BeerRating extends Component {
     //Need to add id after user authentication page is created
     submitScore = () => {
         console.log(this.state)
-        this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, user_id : this.props.user.id, name: this.state.beerName, picture: this.state.imgSrc, notes: this.state.notes, filename: `${this.props.user.id}_${Date.now()}`}})
+        this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, user_id : this.props.user.id, name: this.state.beerName, url: this.state.filename, notes: this.state.notes, filename: `${this.props.user.id}_${Date.now()}`}})
         // this.props.dispatch({type: 'ADD_PICTURE', payload: {picture: this.state.imgSrc, filename: `${this.props.user.id}_${Date.now()}`}})
-        axios.get('/picture', {params: {picture: this.state.imgSrc, filename: `${this.props.user.id}_${Date.now()}`}})
+        axios.get('/picture', {params: {filetype: this.state.imageType, filename: this.state.filename}})
         .then(response =>{
             var signedUrl = response.data;
             console.log(response)
@@ -183,6 +183,7 @@ class BeerRating extends Component {
                 imgSrc : [reader.result],
                 imageType: newfile.type,
                 newfile: newfile,
+                filename: `${this.props.user.id}_${Date.now()}`
             })
             console.log(newfile)
             console.log(this.state)

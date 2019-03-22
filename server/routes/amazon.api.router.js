@@ -15,7 +15,7 @@ router.get('/', (req,res)=>{
         Bucket: 'beerphotos',
         Key: req.query.filename,
         Expires: 60,
-        ContentType: 'image/png',
+        ContentType: req.query.filetype,
         ACL: 'public-read',
     }
     s3.getSignedUrl('putObject', params, function(err, data) {
