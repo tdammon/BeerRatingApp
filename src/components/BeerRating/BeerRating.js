@@ -137,13 +137,14 @@ class BeerRating extends Component {
         axios.get('/picture', {params: {picture: this.state.imgSrc, filename: `${this.props.user.id}_${Date.now()}`}})
         .then(response =>{
             var signedUrl = response.data;
+            console.log(response)
+            console.log(signedUrl)
             var headers= {
-                   'ACL': 'public-read',
                   'Content-Type': this.state.imageType,
                 };
               
-            //   console.log(...this.state.imgSrc)
-            return axios.put(signedUrl, this.state.imgSrc[0]);
+              console.log(...this.state.imageType)
+            return axios.put(signedUrl, this.state.imgSrc, {headers:headers});
         })
         .then(function (result) {
             console.log(result,'success');

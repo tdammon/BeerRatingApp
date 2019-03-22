@@ -11,13 +11,12 @@ const s3 = new aws.S3({
 });
 
 router.get('/', (req,res)=>{
-    let params = {
+    const params = {
         Bucket: 'beerphotos',
         Key: req.query.filename,
-        //Body : req.query.picture[0],
-        ACL: 'public-read',
-        ContentType: 'image/png',
         Expires: 60,
+        ContentType: 'image/png',
+        ACL: 'public-read',
     }
     s3.getSignedUrl('putObject', params, function(err, data) {
         if (err) {
