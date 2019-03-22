@@ -14,17 +14,17 @@ const styles = theme => ({
   form: {
     backgroundColor: 'grey',
     width: '75%',
-    height: '30%',
     display: 'flex',
     flexDirection: 'column',
     marginTop: '40%',
-    // marginLeft: '50%',
-    // marginRight: '50%',
+    marginBottom: '50%',
     padding: 20,
+    paddingTop: 35,
   },
   field: {
     backgroundColor: 'white',
     borderRadius: 10,
+    height: '15%',
   },
   buttonDisplay: {
     display: 'flex',
@@ -72,31 +72,37 @@ class RegisterPage extends Component {
       <div className={classes.root}>
         
         <form className={classes.form} onSubmit={this.registerUser}>
-          <Typography>Register User</Typography>
+          <Typography component="h2" variant="headline">Register User</Typography>
           <TextField
             id="username"
-            label="Username"
+            placeholder="Username"
+            InputProps={{
+              disableUnderline: true,
+              style: {fontSize: '150%'} 
+            }}
             className={classes.field}
             value={this.state.username}
             onChange={this.handleInputChangeFor('username')}
             margin="normal"
-            variant="filled"
           />
           <TextField
             id="password"
-            label="Password"
+            placeholder="Password"
+            InputProps={{
+              disableUnderline: true,
+              style: {fontSize: '150%'} 
+            }}
             className={classes.field}
             value={this.state.password}
             onChange={this.handleInputChangeFor('password')}
             margin="normal"
-            variant="filled"
             />
             <div className={classes.buttonDisplay}>
-            <Button variant="raised" onClick={this.registerUser} className={classes.button}>
-                Register
-            </Button>
             <Button variant="raised" onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}} className={classes.button}>
               Cancel
+            </Button>
+            <Button variant="raised" onClick={this.registerUser} className={classes.button}>
+                Register
             </Button>
           </div>
         </form>

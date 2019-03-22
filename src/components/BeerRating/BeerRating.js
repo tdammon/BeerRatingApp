@@ -77,6 +77,10 @@ const styles = theme => ({
     takePic: {
         display: 'none',
     },
+    samplepic: {
+        height: '75%',
+        width: '90%',
+    },
     buttonDisplay: {
         diplay: 'flex',
         justifySelf: 'center',
@@ -322,7 +326,7 @@ render() {
             </Dialog>
 
             <Dialog open={this.state.openModal}>
-                <img src={this.state.imgSrc} />
+                <img src={this.state.imgSrc} className={classes.samplepic}/>
                 <DialogActions className={classes.buttonDisplay}>
                     <Button onClick={()=>this.closeModal()}>
                         <HighlightOffIcon></HighlightOffIcon>

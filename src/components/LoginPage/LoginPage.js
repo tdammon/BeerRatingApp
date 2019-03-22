@@ -14,17 +14,18 @@ const styles = theme => ({
   form: {
     backgroundColor: 'grey',
     width: '75%',
-    height: '30%',
     display: 'flex',
     flexDirection: 'column',
     marginTop: '40%',
-    // marginLeft: '50%',
-    // marginRight: '50%',
+    marginBottom: '50%',
     padding: 20,
+    paddingTop: 35,
+
   },
   field: {
     backgroundColor: 'white',
     borderRadius: 10,
+    height: '15%',
   },
   buttonDisplay: {
     display: 'flex',
@@ -78,24 +79,34 @@ class LoginPage extends Component {
           </h2>
         )} */}
         <form className={classes.form} onSubmit={this.login}>
-        <Typography>Login</Typography>
+        <Typography component="h2" variant="headline">Login</Typography>
           <TextField
             id="username"
-            label="Username"
+            // label="Username"
+            placeholder="Username"
+            InputProps={{
+              disableUnderline: true,
+              style: {fontSize: '150%'} 
+            }}
             className={classes.field}
             value={this.state.username}
             onChange={this.handleInputChangeFor('username')}
             margin="normal"
-            variant="filled"
+            // variant="filled"
           />
           <TextField
             id="password"
-            label="Password"
+            // label="Password"
+            placeholder="Password"
+            InputProps={{
+              disableUnderline: true,
+              style: {fontSize: '150%'} 
+            }}
             className={classes.field}
             value={this.state.password}
             onChange={this.handleInputChangeFor('password')}
             margin="normal"
-            variant="filled"
+            // variant="filled"
             />
          <div className={classes.buttonDisplay}>
             <Button variant="raised" onClick={this.login} className={classes.button}>
