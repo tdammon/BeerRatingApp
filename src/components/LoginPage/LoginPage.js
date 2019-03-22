@@ -25,7 +25,6 @@ const styles = theme => ({
   field: {
     backgroundColor: 'white',
     borderRadius: 10,
-    height: '15%',
   },
   buttonDisplay: {
     display: 'flex',
