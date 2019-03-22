@@ -144,7 +144,7 @@ class BeerRating extends Component {
                 };
               
               console.log(...this.state.imageType)
-            return axios.put(signedUrl, this.state.imgSrc, {headers:headers});
+            return axios.put(signedUrl, this.state.newfile, {headers:headers});
         })
         .then(function (result) {
             console.log(result,'success');
@@ -182,6 +182,7 @@ class BeerRating extends Component {
                 openModal: true,
                 imgSrc : [reader.result],
                 imageType: newfile.type,
+                newfile: newfile,
             })
             console.log(newfile)
             console.log(this.state)
