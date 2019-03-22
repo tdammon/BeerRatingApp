@@ -20,6 +20,7 @@ const styles = theme => ({
     marginBottom: '50%',
     padding: 20,
     paddingTop: 35,
+    minHeight: 200,
   },
   field: {
     backgroundColor: 'white',
