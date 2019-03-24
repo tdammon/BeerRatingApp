@@ -14,7 +14,7 @@ router.get('/', (req,res)=>{
     const params = {
         Bucket: 'beerphotos',
         Key: req.query.filename,
-        Expires: 60,
+        Expires: 600,
         ContentType: req.query.filetype,
         ACL: 'public-read',
     }
