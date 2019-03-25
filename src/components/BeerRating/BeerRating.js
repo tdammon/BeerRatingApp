@@ -157,7 +157,7 @@ class BeerRating extends Component {
         })
         .then(function (result) {
             console.log(result,'success');
-            window.location.assign('/ratings');
+            window.location.assign('/#/ratings');
           })
           .catch(function (err) {
             console.log(err, 'fail');
