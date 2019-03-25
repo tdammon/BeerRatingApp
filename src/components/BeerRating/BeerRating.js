@@ -36,6 +36,11 @@ const styles = theme => ({
         width: 100,
         justifySelf: 'flex-end',
         marginRight: '12.5%',
+        "&:hover": {
+            "@media (hover: none)": {
+                backgroundColor: 'black',
+            }
+        }
     },
     grid: {
         display: 'flex',
