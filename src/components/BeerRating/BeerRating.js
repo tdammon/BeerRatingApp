@@ -157,6 +157,7 @@ class BeerRating extends Component {
         })
         .then(function (result) {
             console.log(result,'success');
+            window.location.assign('/ratings');
           })
           .catch(function (err) {
             console.log(err, 'fail');
@@ -282,7 +283,7 @@ render() {
                 </Paper>
             </Grid>
             <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
-                <Button component={Link} to="/ratings" className={classes.addImage} onClick={this.submitScore}>
+                <Button className={classes.addImage} onClick={this.submitScore}>
                     Submit
                 </Button>
             </Grid>
