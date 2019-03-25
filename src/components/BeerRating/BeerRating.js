@@ -225,7 +225,13 @@ render() {
         <Grid className={classes.grid} container spacing={24}>
             <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
                 <Button className={classes.addImage} onClick={this.addPic}>
-                    <input 
+                    
+                    Add 
+                    <br></br>
+                    Image
+                    
+                </Button>
+                <input 
                     className={classes.takePic} 
                     ref="file"
                     id="takePic" 
@@ -233,11 +239,6 @@ render() {
                     accept="image/*"
                     onChange={this.onChange}
                     />
-                    Add 
-                    <br></br>
-                    Image
-                    
-                </Button>
             </Grid>
             <Grid className={classes.container} item xs={12}>
                 <Paper className={classes.box}>
