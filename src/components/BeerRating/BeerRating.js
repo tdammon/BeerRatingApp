@@ -157,7 +157,8 @@ class BeerRating extends Component {
         })
         .then(function (result) {
             console.log(result,'success');
-            window.location.assign('/#/ratings');
+            window.location.href= "https://beer-rating.herokuapp.com/#/ratings"
+            
           })
           .catch(function (err) {
             console.log(err, 'fail');
