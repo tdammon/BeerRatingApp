@@ -82,6 +82,9 @@ const styles = theme => ({
     takePic: {
         display: 'none',
     },
+    invisibleLink: {
+        display: 'none',
+    },
     samplepic: {
         height: '75%',
         width: '90%',
@@ -157,7 +160,7 @@ class BeerRating extends Component {
         })
         .then(function (result) {
             console.log(result,'success');
-            window.location.href= "https://beer-rating.herokuapp.com/#/ratings"
+            document.getElementById('invisibleLink').click()
             
           })
           .catch(function (err) {
@@ -287,6 +290,7 @@ render() {
                 <Button className={classes.addImage} onClick={this.submitScore}>
                     Submit
                 </Button>
+                <Link id="invisibleLink" component={Link} to="/rating"></Link>
             </Grid>
             
         </Grid>
