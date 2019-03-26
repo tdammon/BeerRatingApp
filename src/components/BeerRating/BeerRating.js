@@ -157,6 +157,7 @@ class BeerRating extends Component {
               
               console.log(...this.state.imageType)
             return axios.put(signedUrl, this.state.newfile, {headers:headers});
+            
         })
         .then(function (result) {
             console.log(result,'success');
@@ -290,7 +291,7 @@ render() {
                 <Button className={classes.addImage} onClick={this.submitScore}>
                     Submit
                 </Button>
-                <Link id="invisibleLink" component={Link} to="/rating"></Link>
+                <Link id="invisibleLink" component={Link} to="/ratings"></Link>
             </Grid>
             
         </Grid>
