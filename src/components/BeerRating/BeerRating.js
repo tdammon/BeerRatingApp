@@ -161,7 +161,7 @@ class BeerRating extends Component {
         })
         .then(function (result) {
             console.log(result,'success');
-            document.getElementById('invisibleLink').click()
+            
             
           })
           .catch(function (err) {
@@ -173,6 +173,7 @@ class BeerRating extends Component {
             icon: "success",
             timer: 2000,
           });
+          document.getElementById('invisibleLink').click()
     }
 
     selectName =(name) => {
