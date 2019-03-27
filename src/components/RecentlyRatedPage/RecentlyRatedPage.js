@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withStyles} from '@material-ui/core';
+import Button from '@material-ui/core/Button'
 import RecentlyRatedCard from '../RecentlyRatedCard/RecentlyRatedCard';
 
 
 const styles = theme => ({
-    
+    next: {
+        
+    }
 })
 
 class RecentlyRatedPage extends Component {
@@ -23,10 +26,12 @@ class RecentlyRatedPage extends Component {
 
 render() {
     const {classes} = this.props
+    let page = 1
     return(
     <div>
         {/* {JSON.stringify(this.props.ratings)} */}
         {this.props.ratings.map((rating,index) => {
+            if(index< page*10){
             return(
                 <RecentlyRatedCard
                     key= {index}
@@ -39,7 +44,11 @@ render() {
                     url={rating.url}
                     />
             )
+            }
         })}
+        <Button className={classes.next} onClick={page++}>
+            Next Page
+        </Button>
     </div>
     )
 }
