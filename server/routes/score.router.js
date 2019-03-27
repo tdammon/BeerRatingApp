@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     let color = beer.ratings.Color;
     let flavor = beer.ratings.Flavor;
     let finish = beer.ratings.Finish;
-    let url = `https://s3.us-east-2.amazonaws.com/beerphotos/${beer.url}`
+    let url = `https://d2hwsmj42oyfe7.cloudfront.net/${beer.url}`
     console.log(user)
     console.log(url)
     let sqlText = `INSERT INTO beerratings (name, aroma, color, flavor, finish, notes, userid, url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
