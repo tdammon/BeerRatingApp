@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withStyles, TextField, Button, Typography} from '@material-ui/core';
+import Image from '/Users/trevor/Coding/Beer/beer/src/beerPic.jpg'
 
 const styles = theme => ({
   root : {
@@ -9,10 +10,12 @@ const styles = theme => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    backgroundColor: 'green'
+    backgroundImage: `url(${Image})`,
+    backgroundSize : 'cover',
 },
   form: {
     backgroundColor: 'grey',
+    opacity: '0.8',
     width: '75%',
     display: 'flex',
     flexDirection: 'column',
