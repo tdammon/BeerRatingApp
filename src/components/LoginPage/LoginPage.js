@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withStyles, TextField, Button, Typography} from '@material-ui/core';
-import Image from '/Users/trevor/Coding/Beer/beer/src/public/beerPic.jpg'
+
 
 const styles = theme => ({
   root : {
@@ -10,7 +10,7 @@ const styles = theme => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    backgroundImage: `url(${Image})`,
+    backgroundImage: `url(https://s3.us-east-2.amazonaws.com/beerphotos/beer.jpg)`,
     backgroundSize : 'cover',
     alignItems: 'center'
 },
