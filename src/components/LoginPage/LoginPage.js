@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withStyles, TextField, Button, Typography} from '@material-ui/core';
-import Image from '/Users/trevor/Coding/Beer/beer/src/beerPic.jpg'
+import Image from '/Users/trevor/Coding/Beer/beer/src/public/beerPic.jpg'
 
 const styles = theme => ({
   root : {
@@ -12,6 +12,7 @@ const styles = theme => ({
     justifyContent: 'center',
     backgroundImage: `url(${Image})`,
     backgroundSize : 'cover',
+    alignItems: 'center'
 },
   form: {
     backgroundColor: 'grey',
@@ -19,8 +20,8 @@ const styles = theme => ({
     width: '75%',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '40%',
-    marginBottom: '50%',
+    // marginTop: '40%',
+    // marginBottom: '50%',
     padding: 20,
     paddingTop: 35,
     minHeight: 200,
