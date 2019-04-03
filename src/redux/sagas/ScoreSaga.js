@@ -33,6 +33,15 @@ function* beerLookup(action) {
   }
 }
 
+function* breweryLookup(action) {
+  try {
+    const response = yield call(axios.get, '/submitScore/brewery', {params: {name: action.payload}})
+    yield put({type: 'SET_BREWERY_LIST', payload: response.data})
+  } catch(error){
+    console.log('Error Finding a Brewery', error)
+  }
+}
+
 // function* addPicture(action) {
 //   try {
 //     const response = yield call(axios.get, '/picture', {params: {filename: action.payload.filename, picture: action.payload.picture}})
@@ -46,6 +55,7 @@ function* ScoreSaga() {
   yield takeLatest('SUBMIT_SCORE', submitScore);
   yield takeLatest('ADD_BEER', addBeer)
   yield takeLatest('BEER_LOOKUP', beerLookup)
+  yield takeLatest('BREWERY_LOOKUP', breweryLookup)
   // yield takeLatest('ADD_PICTURE', addPicture)
 }
 

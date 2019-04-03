@@ -42,7 +42,6 @@ const styles = theme => ({
         float: 'right',
         width: 100,
         height: 100,
-        
     }
 })
 

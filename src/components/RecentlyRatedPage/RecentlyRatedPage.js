@@ -6,8 +6,12 @@ import RecentlyRatedCard from '../RecentlyRatedCard/RecentlyRatedCard';
 
 
 const styles = theme => ({
-    next: {
-        
+    root: {
+        flexGrow: 1,
+        height: '100%',
+        width: '100%',
+        backgroundImage: `url(https://s3.us-east-2.amazonaws.com/beerphotos/beer.jpg)`,
+        backgroundSize : 'cover',
     }
 })
 
@@ -28,7 +32,7 @@ render() {
     const {classes} = this.props
     let page = 1
     return(
-    <div>
+    <div className={classes.root}>
         {/* {JSON.stringify(this.props.ratings)} */}
         {this.props.ratings.map((rating,index) => {
             if(index< page*10){

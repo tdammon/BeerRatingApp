@@ -11,10 +11,13 @@ const styles = theme => ({
         flexGrow: 1,
         height: '100%',
         display: 'flex',
+        backgroundImage: `url(https://s3.us-east-2.amazonaws.com/beerphotos/beer.jpg)`,
+        backgroundSize : 'cover',
         alignItems: 'center',
     },
     grid: {
         display: 'flex',
+        opacity: '0.8',
     },
     container: {
         display: 'flex',

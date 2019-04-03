@@ -43,6 +43,20 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/brewery', (req, res) => {
+    let brewery = '%'+req.query.name+'%'
+    console.log(brewery)
+    let sqlText = `SELECT name FROM brewerylist WHERE LOWER(name) LIKE LOWER($1);`
+    pool.query(sqlText, [brewery])
+    .then(response => {
+        res.send(response.rows)
+        console.log(response)
+    })
+    .catch(err => {
+        console.log('Error finding Brewery', err)
+    })
+})
+
 router.post('/addBeer', (req,res)=>{
     let name = req.body.name;
     console.log(name)

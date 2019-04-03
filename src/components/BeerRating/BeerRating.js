@@ -26,6 +26,8 @@ const styles = theme => ({
         height: '100%',
         display: 'flex',
         alignItems: 'flex-start',
+        backgroundImage: `url(https://s3.us-east-2.amazonaws.com/beerphotos/beer.jpg)`,
+        backgroundSize : 'cover',
     },
     addImage: {
         display: 'flex',
@@ -45,6 +47,7 @@ const styles = theme => ({
     grid: {
         display: 'flex',
         marginTop: '10%',
+        opacity: '0.8',
     },
     container: {
         display: 'flex',
@@ -93,7 +96,13 @@ const styles = theme => ({
         diplay: 'flex',
         justifySelf: 'center',
         justifyContent: 'center',
-    }
+    },
+    dialogbox: {
+         padding: 10,
+    },
+    dialogbox2: {
+        padding: 5,
+   },
 })
 
 class BeerRating extends Component {
@@ -101,9 +110,11 @@ class BeerRating extends Component {
     state = {
         open: true,
         openSearch: true,
+        openSearch1: true,
         openModal: false,
         notes: null,
         beerName: null,
+        breweryName: null,
         imgSrc: null,
         imageType: null,
     }
@@ -132,6 +143,14 @@ class BeerRating extends Component {
             beerName: event.target.value
         })
         this.props.dispatch({type: 'BEER_LOOKUP', payload: event.target.value})
+    }  
+
+    brewerySearch =() => event => {
+        this.setState({
+            ...this.state,
+            breweryName: event.target.value
+        })
+        this.props.dispatch({type: 'BREWERY_LOOKUP', payload: event.target.value})
     }  
 
     updateNotes = (event) => {
@@ -303,11 +322,35 @@ render() {
                 disableEscapeKeyDown
                 open={this.state.open}
                 onClose={this.handleClose}
+                className={classes.dialogbox}
                 >
 
-                <DialogTitle>Find Your Beer</DialogTitle>
+                <DialogTitle className={classes.dialogbox}>Select A Brewery</DialogTitle>
 
-                <DialogContent>        
+                <DialogContent className={classes.dialogbox2}>        
+                    <List>
+                        <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                            <Search />
+                        </ListItemIcon>
+                        <Input onChange={this.brewerySearch()} type="search" 
+                            placeholder="Search Your Beer" value={this.state.beerName}/>
+                        </ListItem>
+                        <Collapse in={this.state.openSearch1} unmountOnExit>
+                        {this.props.brewery.map( brewery => (
+                            <ListItem button key={brewery.name} onClick={() => this.selectName(brewery.name)}>
+                                <ListItemIcon><AddCircle/></ListItemIcon>
+                                <ListItemText inset primary={brewery.name}/>
+                            </ListItem>
+                        ))}
+                        </Collapse>
+                    </List>
+                    
+                </DialogContent>
+
+                <DialogTitle className={classes.dialogbox}>Find A Beer</DialogTitle>
+
+                <DialogContent className={classes.dialogbox2}>        
                     <List>
                         <ListItem button className={classes.nested}>
                         <ListItemIcon>
@@ -362,6 +405,7 @@ const mapStateToProps = state => ({
     scores: state.ScoreReducer,
     user: state.userReducer,
     beer: state.setBeerListReducer,
+    brewery: state.setBreweryListReducer,
   });
 
 export default connect(mapStateToProps)(withStyles(styles)(BeerRating));
