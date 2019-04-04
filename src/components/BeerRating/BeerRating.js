@@ -22,12 +22,13 @@ import Score from '../Score/Score'
 
 const styles = theme => ({
     root : {
-        flexGrow: 1,
-        height: '100%',
+        // flexGrow: 1,
+        // height: '100%',
         display: 'flex',
         alignItems: 'flex-start',
         backgroundImage: `url(https://s3.us-east-2.amazonaws.com/beerphotos/beer.jpg)`,
         backgroundSize : 'cover',
+        backgroundAttachment: 'fixed',
     },
     addImage: {
         display: 'flex',
@@ -334,7 +335,7 @@ render() {
                             <Search />
                         </ListItemIcon>
                         <Input onChange={this.brewerySearch()} type="search" 
-                            placeholder="Search Your Beer" value={this.state.beerName}/>
+                            placeholder="Search Your Brewery" value={this.state.breweryName}/>
                         </ListItem>
                         <Collapse in={this.state.openSearch1} unmountOnExit>
                         {this.props.brewery.map( brewery => (
