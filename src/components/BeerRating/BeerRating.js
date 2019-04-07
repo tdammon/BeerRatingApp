@@ -112,7 +112,7 @@ class BeerRating extends Component {
         open: true,
         openSearch: true,
         openSearch1: true,
-        openModal: false,
+        // openModal: false,
         notes: null,
         beerName: null,
         breweryName: null,
@@ -143,7 +143,9 @@ class BeerRating extends Component {
             ...this.state,
             beerName: event.target.value
         })
-        this.props.dispatch({type: 'BEER_LOOKUP', payload: event.target.value})
+        if(event.target.value !==""){
+            this.props.dispatch({type: 'BEER_LOOKUP', payload: event.target.value})
+        }
     }  
 
     brewerySearch =() => event => {
@@ -151,7 +153,9 @@ class BeerRating extends Component {
             ...this.state,
             breweryName: event.target.value
         })
-        this.props.dispatch({type: 'BREWERY_LOOKUP', payload: event.target.value})
+        if(event.target.value !== ""){
+            this.props.dispatch({type: 'BREWERY_LOOKUP', payload: event.target.value})
+        }
     }  
 
     updateNotes = (event) => {
@@ -164,7 +168,7 @@ class BeerRating extends Component {
     //Need to add id after user authentication page is created
     submitScore = () => {
         console.log(this.state)
-        this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, user_id : this.props.user.id, name: this.state.beerName, url: this.state.filename, notes: this.state.notes, filename: `${this.props.user.id}_${Date.now()}`}})
+        this.props.dispatch({type: 'SUBMIT_SCORE', payload: {ratings: this.props.scores, user_id : this.props.user.id, breweryName: this.state.breweryName, name: this.state.beerName, url: this.state.filename, notes: this.state.notes, filename: `${this.props.user.id}_${Date.now()}`}})
         // this.props.dispatch({type: 'ADD_PICTURE', payload: {picture: this.state.imgSrc, filename: `${this.props.user.id}_${Date.now()}`}})
         axios.get('/picture', {params: {filetype: this.state.imageType, filename: this.state.filename}})
         .then(response =>{
@@ -192,15 +196,26 @@ class BeerRating extends Component {
             text: "You clicked the button!",
             icon: "success",
             timer: 2000,
+          })
+          .then(()=> {
+            document.getElementById('invisibleLink').click()
           });
-          document.getElementById('invisibleLink').click()
+          
     }
 
-    selectName =(name) => {
+    selectBeerName =(name) => {
         this.setState({
             ...this.state,
             beerName: name,
             openSearch: false,
+        })
+    }
+
+    selectBreweryName =(name) => {
+        this.setState({
+            ...this.state,
+            breweryName: name,
+            openSearch1: false,
         })
     }
 
@@ -227,20 +242,20 @@ class BeerRating extends Component {
         }
     }
 
-    closeModal = () => {
-        this.setState({
-            ...this.state,
-            openModal: false,
-            imgSrc : null,
-        })
-    }
+    // closeModal = () => {
+    //     this.setState({
+    //         ...this.state,
+    //         openModal: false,
+    //         imgSrc : null,
+    //     })
+    // }
 
-    savePicture = () => {
-        this.setState({
-            ...this.state,
-            openModal: false,
-        })
-    }
+    // savePicture = () => {
+    //     this.setState({
+    //         ...this.state,
+    //         openModal: false,
+    //     })
+    // }
 
 
 render() {
@@ -339,7 +354,7 @@ render() {
                         </ListItem>
                         <Collapse in={this.state.openSearch1} unmountOnExit>
                         {this.props.brewery.map( brewery => (
-                            <ListItem button key={brewery.name} onClick={() => this.selectName(brewery.name)}>
+                            <ListItem button key={brewery.name} onClick={() => this.selectBreweryName(brewery.name)}>
                                 <ListItemIcon><AddCircle/></ListItemIcon>
                                 <ListItemText inset primary={brewery.name}/>
                             </ListItem>
@@ -362,7 +377,7 @@ render() {
                         </ListItem>
                         <Collapse in={this.state.openSearch} unmountOnExit>
                         {this.props.beer.map( beer => (
-                            <ListItem button key={beer.name} onClick={() => this.selectName(beer.name)}>
+                            <ListItem button key={beer.name} onClick={() => this.selectBeerName(beer.name)}>
                                 <ListItemIcon><AddCircle/></ListItemIcon>
                                 <ListItemText inset primary={beer.name}/>
                             </ListItem>
@@ -383,7 +398,7 @@ render() {
 
             </Dialog>
 
-            <Dialog open={this.state.openModal}>
+            {/* <Dialog open={this.state.openModal}>
                 <img src={this.state.imgSrc} className={classes.samplepic}/>
                 <DialogActions className={classes.buttonDisplay}>
                     <Button onClick={()=>this.closeModal()}>
@@ -393,7 +408,7 @@ render() {
                         <ThumbUpIcon></ThumbUpIcon>
                     </Button>
                 </DialogActions>
-            </Dialog>    
+            </Dialog>     */}
 
         </div>
         {JSON.stringify(this.state.scores)}

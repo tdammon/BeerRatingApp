@@ -8,6 +8,7 @@ function* submitScore(action) {
 
     yield call(axios.post, '/submitScore', action.payload);
     yield put({type: 'ADD_BEER', payload: action.payload})
+    yield put({type: 'ADD_BREWERY', payload: action.payload})
   } catch (error) {
     console.log('Error Submitting Score:', error);
     
@@ -20,6 +21,16 @@ function* addBeer(action) {
 
   } catch (error) {
     console.log('Error Adding a Beer', error);
+  }
+
+}
+
+function* addBrewery(action) {
+  try {
+    yield call(axios.post, '/submitScore/addBrewery', action.payload);
+
+  } catch (error) {
+    console.log('Error Adding a Brewery', error);
   }
 
 }
@@ -54,6 +65,7 @@ function* breweryLookup(action) {
 function* ScoreSaga() {
   yield takeLatest('SUBMIT_SCORE', submitScore);
   yield takeLatest('ADD_BEER', addBeer)
+  yield takeLatest('ADD_BREWERY', addBrewery)
   yield takeLatest('BEER_LOOKUP', beerLookup)
   yield takeLatest('BREWERY_LOOKUP', breweryLookup)
   // yield takeLatest('ADD_PICTURE', addPicture)

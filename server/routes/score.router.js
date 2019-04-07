@@ -15,10 +15,11 @@ router.post('/', (req, res) => {
     let flavor = beer.ratings.Flavor;
     let finish = beer.ratings.Finish;
     let url = `https://d2hwsmj42oyfe7.cloudfront.net/${beer.url}`
+    let brewery = beer.brewery;
     console.log(user)
     console.log(url)
-    let sqlText = `INSERT INTO beerratings (name, aroma, color, flavor, finish, notes, userid, url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
-    pool.query(sqlText,[name, aroma, color, flavor, finish, notes, user, url])
+    let sqlText = `INSERT INTO beerratings (name, aroma, color, flavor, finish, notes, userid, url, brewery) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`
+    pool.query(sqlText,[name, aroma, color, flavor, finish, notes, user, url, brewery])
     .then( response => {
         res.send(response)
         // console.log(response)
@@ -73,6 +74,32 @@ router.post('/addBeer', (req,res)=>{
             })
             .catch(err => {
                 console.log('Error adding beer', err)
+            })
+        } else {
+            res.send(response);
+        }
+    })
+    .catch(err => {
+        console.log('Error searching beer list', err)
+    })
+})
+
+router.post('/addBrewery', (req,res)=>{
+    let name = req.body.breweryName;
+    console.log(name)
+    let sqlText = 'SELECT name FROM brewerylist WHERE LOWER(name) = LOWER($1);'
+    pool.query(sqlText, [name])
+    .then(response => {
+        console.log(response.rowCount)
+        if(response.rowCount === 0){
+            console.log(name);
+            let sqlText = 'INSERT INTO brewerylist("name") VALUES ($1);'
+            pool.query(sqlText, [name])
+            .then(response => {
+                res.send(response)
+            })
+            .catch(err => {
+                console.log('Error adding brewery', err)
             })
         } else {
             res.send(response);
