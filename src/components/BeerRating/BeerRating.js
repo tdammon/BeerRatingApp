@@ -75,6 +75,7 @@ const styles = theme => ({
         color: 'black',
         textDecoration: 'none',
         fontSize: 20,
+        margin: 0,
     },
     swal: {
         backgroundColor: 'green',
@@ -89,20 +90,31 @@ const styles = theme => ({
     invisibleLink: {
         display: 'none',
     },
-    samplepic: {
-        height: '75%',
-        width: '90%',
-    },
+    // samplepic: {
+    //     height: '75%',
+    //     width: '90%',
+    // },
     buttonDisplay: {
         diplay: 'flex',
         justifySelf: 'center',
         justifyContent: 'center',
     },
     dialogbox: {
-         padding: 10,
+         padding: 5,
+         textAlign: 'center',
+         width: '100%',
     },
     dialogbox2: {
-        padding: 5,
+        padding: 3,
+
+        borderStyle: 'solid',
+        borderColor: 'black',
+        borderWidth: '1px 0px',
+   },
+   nested: {
+       padding: 5,
+       display: 'flex',
+       justifyContent: 'center',
    },
 })
 
@@ -336,19 +348,21 @@ render() {
             <Dialog
                 disableBackdropClick
                 disableEscapeKeyDown
+                maxWidth={'xs'}
+                fullWidth={true}
                 open={this.state.open}
                 onClose={this.handleClose}
                 className={classes.dialogbox}
                 >
 
-                <DialogTitle className={classes.dialogbox}>Select A Brewery</DialogTitle>
+                <DialogTitle >Find Your Beer</DialogTitle>
 
                 <DialogContent className={classes.dialogbox2}>        
                     <List>
                         <ListItem button className={classes.nested}>
-                        <ListItemIcon>
+                        {/* <ListItemIcon>
                             <Search />
-                        </ListItemIcon>
+                        </ListItemIcon> */}
                         <Input onChange={this.brewerySearch()} type="search" 
                             placeholder="Search Your Brewery" value={this.state.breweryName}/>
                         </ListItem>
@@ -364,14 +378,12 @@ render() {
                     
                 </DialogContent>
 
-                <DialogTitle className={classes.dialogbox}>Find A Beer</DialogTitle>
-
                 <DialogContent className={classes.dialogbox2}>        
                     <List>
                         <ListItem button className={classes.nested}>
-                        <ListItemIcon>
+                        {/* <ListItemIcon>
                             <Search />
-                        </ListItemIcon>
+                        </ListItemIcon> */}
                         <Input onChange={this.beerSearch()} type="search" 
                             placeholder="Search Your Beer" value={this.state.beerName}/>
                         </ListItem>

@@ -12,7 +12,7 @@ const styles = theme => ({
     justifyContent: 'center',
     backgroundImage: `url(https://s3.us-east-2.amazonaws.com/beerphotos/beer.jpg)`,
     backgroundSize : 'cover',
-    alignItems: 'center'
+    alignItems: 'center',
 },
   form: {
     backgroundColor: 'grey',
