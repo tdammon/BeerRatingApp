@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {withStyles, Dialog, Typography, ListItem, List, ListItemIcon, ListItemText, Input, Collapse} from '@material-ui/core';
+import {withStyles, Dialog, Typography, ListItem, List, ListItemIcon, ListItemText, Input, Select, Collapse} from '@material-ui/core';
 import Search from '@material-ui/icons/Search';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -104,12 +104,13 @@ const styles = theme => ({
          textAlign: 'center',
          width: '100%',
     },
-    dialogbox2: {
-        padding: 3,
-
+    dialogheader: {
         borderStyle: 'solid',
         borderColor: 'black',
-        borderWidth: '1px 0px',
+        borderWidth: '0px 0px 1px 0px',
+    },
+    dialogbox2: {
+        padding: 3,
    },
    nested: {
        padding: 5,
@@ -355,7 +356,7 @@ render() {
                 className={classes.dialogbox}
                 >
 
-                <DialogTitle >Find Your Beer</DialogTitle>
+                <DialogTitle className={classes.dialogheader}>Find Your Beer</DialogTitle>
 
                 <DialogContent className={classes.dialogbox2}>        
                     <List>
@@ -368,7 +369,7 @@ render() {
                         </ListItem>
                         <Collapse in={this.state.openSearch1} unmountOnExit>
                         {this.props.brewery.map( brewery => (
-                            <ListItem button key={brewery.name} onClick={() => this.selectBreweryName(brewery.name)}>
+                            <ListItem divider={true} button key={brewery.name} onClick={() => this.selectBreweryName(brewery.name)}>
                                 <ListItemIcon><AddCircle/></ListItemIcon>
                                 <ListItemText inset primary={brewery.name}/>
                             </ListItem>
@@ -383,18 +384,21 @@ render() {
                         <ListItem button className={classes.nested}>
                         {/* <ListItemIcon>
                             <Search />
-                        </ListItemIcon> */}
+                        </ListItemIcon> */}        
                         <Input onChange={this.beerSearch()} type="search" 
                             placeholder="Search Your Beer" value={this.state.beerName}/>
+                        
                         </ListItem>
                         <Collapse in={this.state.openSearch} unmountOnExit>
                         {this.props.beer.map( beer => (
-                            <ListItem button key={beer.name} onClick={() => this.selectBeerName(beer.name)}>
+                            <ListItem divider={true} button key={beer.name} onClick={() => this.selectBeerName(beer.name)}>
                                 <ListItemIcon><AddCircle/></ListItemIcon>
                                 <ListItemText inset primary={beer.name}/>
                             </ListItem>
+                            
                         ))}
                         </Collapse>
+                        
                     </List>
                     
                 </DialogContent>
