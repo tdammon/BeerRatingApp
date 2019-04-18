@@ -7,8 +7,10 @@ import errors from './errorsReducer';
 import setBeerListReducer from './setBeerListReducer';
 import setBreweryListReducer from './setBreweryListReducer';
 import setRatingsReducer from './RatingsReducer';
+import barReducer from './BarReducer';
 
 const rootReducer = combineReducers({
+    barReducer,
     credentialsReducer,
     ScoreReducer,
     userReducer,

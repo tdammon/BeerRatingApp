@@ -59,6 +59,10 @@ class BarRating extends Component {
 
     state = {
         open: true,
+        openSearch: true,
+        openSearch1: true,
+        notes: null,
+        barName: null,
     }
 
 
@@ -72,8 +76,11 @@ class BarRating extends Component {
     beerSearch =() => event => {
         this.setState({
             ...this.state,
-            beerName: event.target.value
+            barName: event.target.value
         })
+        if(event.target.value !==""){
+            this.props.dispatch({type: 'BAR_LOOKUP', payload: event.target.value})
+        }
     }  
 
 render() {
@@ -83,13 +90,13 @@ render() {
     <div className={classes.root}>
 
         <Grid className={classes.grid} container spacing={24}>
-            <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
+            {/* <Grid className={classes.container} style={{justifyContent: 'flex-end'}} item xs={12}>
                 <Button className={classes.addImage}>
                     Add 
                     <br></br>
                     Image
                 </Button>
-            </Grid>
+            </Grid> */}
             <Grid className={classes.container} item xs={12}>
                 <Paper className={classes.box}>
 
@@ -160,7 +167,7 @@ render() {
                         variant="outlined"
                         placeholder="Search Here"
                         // label="Label"
-                        onChange={this.beerSearch()}
+                        onChange={this.barSearch()}
                     />
                 </DialogContent>
                     
@@ -181,6 +188,7 @@ render() {
 }
 };
 const mapStateToProps = state => ({
+    bar: state.barReducer,
   });
 
 export default connect(mapStateToProps)(withStyles(styles)(BarRating));
