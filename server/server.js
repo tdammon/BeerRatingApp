@@ -30,7 +30,7 @@ app.use('/submitScore', scoreRouter)
 app.use('/api/user', userRouter);
 app.use('/ratings', ratingsRouter);
 app.use('/picture', amazonRouter);
-app.use('/barlookup', barRouter)
+// app.use('/barlookup', barRouter)
 
 // Serve static files
 app.use(express.static('build'));
