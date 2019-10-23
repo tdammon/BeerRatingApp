@@ -44,6 +44,12 @@ const styles = theme => ({
     },
     orangeStar : {
         color : 'orange',
+    },
+    textStar : {
+        display: 'flex'
+    },
+    cardCat: {
+        width: '3rem',
     }
 })
 
@@ -116,16 +122,22 @@ render() {
         <div className={classes.details}>
           <CardContent className={classes.cardContent}>
             <div className={classes.inlinetypography}>
-              <Typography>Aroma: </Typography>
-              <Typography>Color:</Typography>
-              <Typography>Flavor:</Typography>
-              <Typography>Finish:</Typography>
-            </div>
-            <div className={classes.inlinetypography}>
-              <div>{this.renderStars(this.props.aroma)}</div>
-              <div>{this.renderStars(this.props.color)}</div>
-              <div>{this.renderStars(this.props.flavor)}</div>
-              <div>{this.renderStars(this.props.finish)}</div>
+                <div className={classes.textStar}>
+                    <Typography className={classes.cardCat}>Aroma: </Typography>
+                    <div>{this.renderStars(this.props.aroma)}</div>
+                </div>
+                <div className={classes.textStar}>
+                    <Typography className={classes.cardCat}>Color: </Typography>
+                    <div>{this.renderStars(this.props.color)}</div>
+                </div>
+                <div className={classes.textStar}>
+                    <Typography className={classes.cardCat}>Flavor: </Typography>
+                    <div>{this.renderStars(this.props.flavor)}</div>
+                </div>
+                <div className={classes.textStar}>
+                    <Typography className={classes.cardCat}>Finish: </Typography>
+                    <div>{this.renderStars(this.props.finish)}</div>
+                </div>
             </div>   
           </CardContent>
           <CardMedia 

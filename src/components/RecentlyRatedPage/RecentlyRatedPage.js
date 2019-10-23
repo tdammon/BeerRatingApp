@@ -37,6 +37,10 @@ render() {
     return(
     <div className={classes.root}>
         {/* {JSON.stringify(this.props.ratings)} */}
+        <Button className={classes.next} onClick={page++}>
+            Next Page
+        </Button>
+        <div>
         {this.props.ratings.map((rating,index) => {
             if(index< page*10){
             return(
@@ -53,9 +57,8 @@ render() {
             )
             }
         })}
-        <Button className={classes.next} onClick={page++}>
-            Next Page
-        </Button>
+        </div>
+        
     </div>
     )
 }
