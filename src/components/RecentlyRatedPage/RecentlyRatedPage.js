@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withStyles} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
-import RecentlyRatedCard from '../RecentlyRatedCard/RecentlyRatedCard';
+import NewCardPage from '../RecentlyRatedCard/NewCardPage';
 
 
 const styles = theme => ({
     root: {
-        flexGrow: 1,
-        height: '100%',
-        width: '100%',
-        backgroundImage: `url(https://s3.us-east-2.amazonaws.com/beerphotos/beer.jpg)`,
-        backgroundSize : 'cover',
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        // flexGrow: 1,
+        // height: '100%',
+        //width: '100%',
+        // backgroundImage: `url(https://s3.us-east-2.amazonaws.com/beerphotos/beer.jpg)`,
+        // backgroundSize : 'cover',
     }
 })
 
@@ -37,7 +40,7 @@ render() {
         {this.props.ratings.map((rating,index) => {
             if(index< page*10){
             return(
-                <RecentlyRatedCard
+                <NewCardPage
                     key= {index}
                     aroma= {rating.aroma}
                     color={rating.color}

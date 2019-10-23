@@ -11,12 +11,10 @@ import Collapse from '@material-ui/core/Collapse';
 
 const styles = theme => ({
     card: {
-        // display: 'flex',
-        // flexDirection: 'row',
+
     },
     details: {
         display: 'flex',
-        
       },
     beerName: {
         display: 'flex',
@@ -27,7 +25,6 @@ const styles = theme => ({
         flex: '1 0 auto',
     },
     inlinetypography: {
-        // display: 'inline',
         float: 'left',
         paddingLeft: 10,
     },
@@ -62,46 +59,42 @@ render() {
     const {classes} = this.props
     return(
     <div>
-                <Card className={classes.card}>
-                    
-                        <div className={classes.beerName}>
-                            <Typography variant="headline">{this.props.name}</Typography>
-                        </div>
-
-                        <div className={classes.details}>
-                        <CardContent className={classes.cardContent}>
-                            <div className={classes.inlinetypography}>
-                            <Typography>Aroma:  </Typography>
-                            <Typography>Color:</Typography>
-                            <Typography>Flavor:</Typography>
-                            <Typography>Finish:</Typography>
-                            </div>
-                            <div className={classes.inlinetypography}>
-                            <Typography>{this.props.aroma}</Typography>
-                            <Typography>{this.props.color}</Typography>
-                            <Typography>{this.props.flavor}</Typography>
-                            <Typography>{this.props.finish}</Typography>
-                            </div>
-                            
-                            
-                        </CardContent>
-                        <CardMedia 
-                        className={classes.img}
-                        image={this.props.url}
-                        />
-                        </div>
-                        <IconButton 
-                            className={classes.dropdown}
-                            onClick={this.handleExpandClick}
-                            >
-                            <ExpandMoreIcon />
-                        </IconButton>
-                        <Collapse in={this.state.open} unmountOnExit>
-                            <CardContent>
-                                {this.props.notes}
-                            </CardContent>
-                        </Collapse>
-                </Card>
+      <Card className={classes.card}>    
+        <div className={classes.beerName}>
+          <Typography variant="headline">{this.props.name}</Typography>
+        </div>
+        <div className={classes.details}>
+          <CardContent className={classes.cardContent}>
+            <div className={classes.inlinetypography}>
+              <Typography>Aroma:  </Typography>
+              <Typography>Color:</Typography>
+              <Typography>Flavor:</Typography>
+              <Typography>Finish:</Typography>
+            </div>
+            <div className={classes.inlinetypography}>
+              <Typography>{this.props.aroma}</Typography>
+              <Typography>{this.props.color}</Typography>
+              <Typography>{this.props.flavor}</Typography>
+              <Typography>{this.props.finish}</Typography>
+            </div>   
+          </CardContent>
+          <CardMedia 
+            className={classes.img}
+            image={this.props.url}
+            />
+        </div>
+                <IconButton 
+                    className={classes.dropdown}
+                    onClick={this.handleExpandClick}
+                    >
+                    <ExpandMoreIcon />
+                </IconButton>
+                <Collapse in={this.state.open} unmountOnExit>
+                    <CardContent>
+                        {this.props.notes}
+                    </CardContent>
+                </Collapse>
+        </Card>
             
     </div>
     )

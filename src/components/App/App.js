@@ -12,6 +12,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../HomePage/HomePage';
 import BeerRating from '../BeerRating/BeerRating';
 import BarRating from '../BarRating/BarRating';
+import NewCardPage from '../RecentlyRatedCard/NewCardPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RecentlyRatedPage from '../RecentlyRatedPage/RecentlyRatedPage';
 import AccountPage from '../AccountPage/AccountPage'
